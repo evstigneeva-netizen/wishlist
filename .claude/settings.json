@@ -1,0 +1,44 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(cat:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npx:*)"
+    ],
+    "deny": [
+      "Bash(git push:*)",
+      "Bash(rm -rf:*)",
+      "Bash(git reset --hard:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [],
+    "PostToolUse": [],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/naumova/vibecoding/wishlist/.claude/hooks/on-stop.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

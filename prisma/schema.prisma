@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  createdAt DateTime @default(now())
+
+  wishlists Wishlist[]
+}
+
+model Wishlist {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  isPublic    Boolean  @default(true)
+  shareToken  String   @unique @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  items WishlistItem[]
+}
+
+model WishlistItem {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  url         String?
+  imageUrl    String?
+  price       Float?
+  isReserved  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  wishlistId String
+  wishlist   Wishlist @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
+}
