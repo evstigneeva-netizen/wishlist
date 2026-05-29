@@ -12,6 +12,9 @@
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "prisma", "sharp", "unrs-resolver"]
+  },
   "engines": {
     "node": "22.x"
   },
